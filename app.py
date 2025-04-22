@@ -43,10 +43,16 @@ def predict():
         people = int(request.form['people'])
         duration = int(request.form['duration'])
 
-        print(f"🟡 Input: {destination}, {travel_mode}, People: {people}, Duration: {duration}")
+        # New input fields
+        accommodation_cost = float(request.form['accommodation_cost'] or 0)
+        food_cost = float(request.form['food_cost'] or 0)
+        travel_cost = float(request.form['travel_cost'] or 0)
+
+        print(f"🟡 Input: {destination}, {travel_mode}, People: {people}, Duration: {duration}, "
+              f"Accommodation Cost: {accommodation_cost}, Food Cost: {food_cost}, Travel Cost: {travel_cost}")
 
         # Preprocess and scale
-        input_data = preprocess(destination, travel_mode, people, duration)
+        input_data = preprocess(destination, travel_mode, people, duration, accommodation_cost, food_cost, travel_cost)
         print(f"🟢 Preprocessed input: {input_data}")
 
         input_scaled = scaler.transform([input_data])  # ✅ Use trained scaler
@@ -62,10 +68,21 @@ def predict():
         print(f"❌ Prediction error: {e}")
         return render_template('index.html', budget="Error: Check your input or model setup")
 
-def preprocess(destination, travel_mode, people, duration):
+def preprocess(destination, travel_mode, people, duration, accommodation_cost, food_cost, travel_cost):
+    # Mapping for categorical variables
     dest_map = {"Chintpurni": 0, "Agra": 1, "Srinagar": 2, "Manali": 3, "Ooty": 4, "Rishikesh": 5}
     mode_map = {"Motorcycle": 0, "Flight": 1, "Bus": 2, "Train": 3, "Personal Car": 4}
-    return [dest_map.get(destination, 0), mode_map.get(travel_mode, 0), people, duration]
+    
+    # Return processed features: 7 total features now
+    return [
+        dest_map.get(destination, 0),         # Destination: mapped to an integer
+        mode_map.get(travel_mode, 0),        # Travel mode: mapped to an integer
+        people,                             # Number of people
+        duration,                           # Duration of travel in days
+        accommodation_cost,                 # Accommodation cost
+        food_cost,                          # Food cost
+        travel_cost                         # Travel cost
+    ]
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
