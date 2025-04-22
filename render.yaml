@@ -2,6 +2,6 @@ services:
   - type: web
     name: travel-ai-backend
     env: python
-    plan: free
     buildCommand: "./build.sh"
     startCommand: "gunicorn app:app"
+    plan: free
