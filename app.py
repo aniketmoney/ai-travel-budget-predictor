@@ -4,7 +4,7 @@ import tensorflow as tf
 from keras.models import load_model
 
 app = Flask(__name__)
-model = load_model('your_model.h5')  # Update with your actual file
+model = load_model('model.h5')  # Update with your actual file
 
 @app.route('/')
 def index():
