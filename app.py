@@ -2,9 +2,13 @@ from flask import Flask, request, render_template
 import numpy as np
 import tensorflow as tf
 from keras.models import load_model
+from tensorflow.keras.metrics import MeanSquaredError
+tf.config.set_visible_devices([], 'GPU')
+
 
 app = Flask(__name__)
-model = load_model('model.h5')  # Update with your actual file
+from tensorflow.keras.metrics import MeanSquaredError
+  # Update with your actual file
 
 @app.route('/')
 def index():
