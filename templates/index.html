@@ -1,25 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Budget Calculator</title>
+    <title>Travel Budget Predictor</title>
 </head>
 <body>
-    <h1>AI Budget Calculator</h1>
-    <form action="/predict" method="post">
-        <label for="destination">Select Destination:</label>
-        <select id="destination" name="destination">
+    <h1>Travel Budget Predictor</h1>
+    
+    <form action="/predict" method="POST">
+        <!-- Destination -->
+        <label for="destination">Destination:</label>
+        <select name="destination" id="destination">
             <option value="Chintpurni">Chintpurni</option>
             <option value="Agra">Agra</option>
             <option value="Srinagar">Srinagar</option>
             <option value="Manali">Manali</option>
-            <!-- Add all your destinations here -->
+            <option value="Ooty">Ooty</option>
+            <option value="Rishikesh">Rishikesh</option>
         </select><br><br>
 
-        <label for="travel_mode">Select Travel Mode:</label>
-        <select id="travel_mode" name="travel_mode">
+        <!-- Travel Mode -->
+        <label for="travel_mode">Travel Mode:</label>
+        <select name="travel_mode" id="travel_mode">
             <option value="Motorcycle">Motorcycle</option>
             <option value="Flight">Flight</option>
             <option value="Bus">Bus</option>
@@ -27,17 +30,32 @@
             <option value="Personal Car">Personal Car</option>
         </select><br><br>
 
+        <!-- People -->
         <label for="people">Number of People:</label>
-        <input type="number" id="people" name="people"><br><br>
+        <input type="number" id="people" name="people" required><br><br>
 
-        <label for="duration">Duration (Days):</label>
-        <input type="number" id="duration" name="duration"><br><br>
+        <!-- Duration -->
+        <label for="duration">Duration (in days):</label>
+        <input type="number" id="duration" name="duration" required><br><br>
 
-        <button type="submit">Calculate Budget</button>
+        <!-- Additional Features: Accommodation, Food, and Travel Cost -->
+        <label for="accommodation_cost">Accommodation Cost:</label>
+        <input type="number" id="accommodation_cost" name="accommodation_cost" step="0.01"><br><br>
+
+        <label for="food_cost">Food Cost:</label>
+        <input type="number" id="food_cost" name="food_cost" step="0.01"><br><br>
+
+        <label for="travel_cost">Travel Cost:</label>
+        <input type="number" id="travel_cost" name="travel_cost" step="0.01"><br><br>
+
+        <button type="submit">Predict Budget</button>
     </form>
 
     {% if budget %}
-        <h2>Estimated Budget: ₹{{ budget }}</h2>
+        <h2>Predicted Budget: ${{ budget }}</h2>
+    {% else %}
+        <h2>No prediction available</h2>
     {% endif %}
+
 </body>
 </html>
