@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,5 +34,9 @@
 
         <button type="submit">Calculate Budget</button>
     </form>
+
+    {% if budget %}
+        <h2>Estimated Budget: ₹{{ budget }}</h2>
+    {% endif %}
 </body>
 </html>
