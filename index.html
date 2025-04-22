@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Budget Calculator</title>
+</head>
+<body>
+    <h1>AI Budget Calculator</h1>
+    <form action="/predict" method="post">
+        <label for="destination">Select Destination:</label>
+        <select id="destination" name="destination">
+            <option value="Chintpurni">Chintpurni</option>
+            <option value="Agra">Agra</option>
+            <option value="Srinagar">Srinagar</option>
+            <option value="Manali">Manali</option>
+            <!-- Add all your destinations here -->
+        </select><br><br>
+
+        <label for="travel_mode">Select Travel Mode:</label>
+        <select id="travel_mode" name="travel_mode">
+            <option value="Motorcycle">Motorcycle</option>
+            <option value="Flight">Flight</option>
+            <option value="Bus">Bus</option>
+            <option value="Train">Train</option>
+            <option value="Personal Car">Personal Car</option>
+        </select><br><br>
+
+        <label for="people">Number of People:</label>
+        <input type="number" id="people" name="people"><br><br>
+
+        <label for="duration">Duration (Days):</label>
+        <input type="number" id="duration" name="duration"><br><br>
+
+        <button type="submit">Calculate Budget</button>
+    </form>
+</body>
+</html>
