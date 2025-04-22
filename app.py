@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 
 app = Flask(__name__)
-model = tf.keras.models.load_model('model.h5')
+model = tf.keras.models.load_model('model.h5', compile=False)
 
 @app.route('/')
 def home():
